@@ -21,7 +21,7 @@ class Material(models.Model):
 
     name = models.CharField(max_length=100, verbose_name='Материал')
     slug = models.SlugField(max_length=100)
-    subject = models.ForeignKey('main.Subject', on_delete=models.CASCADE)
+    subject = models.ForeignKey('main.Subject', on_delete=models.CASCADE, verbose_name='Предмет')
     type = models.CharField(max_length=15, choices=MaterialType, verbose_name='Тип материала')
     content = models.JSONField(verbose_name='Условие')
 
@@ -33,9 +33,8 @@ class Material(models.Model):
         verbose_name_plural = 'Материалы'
 
 class Solution(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Решение')
     slug = models.SlugField(max_length=100)
-    material = models.ForeignKey('main.Subject', on_delete=models.CASCADE)
+    material = models.ForeignKey('main.Material', on_delete=models.CASCADE, verbose_name='Материал')
     variant = models.PositiveSmallIntegerField(verbose_name='Вариант')
     content = models.JSONField(verbose_name='Решение')
 
