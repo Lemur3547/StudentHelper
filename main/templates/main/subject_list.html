@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+{% block title %}
+<title>Список предметов</title>
+{% endblock title %}
+
+{% block content %}
+
+{% for subject in subject_list %}
+<a href="{% url "main:subject" subject.slug %}">
+    {{ subject.name }}
+</a>
+{% endfor %}
+
+{% endblock content %}
+

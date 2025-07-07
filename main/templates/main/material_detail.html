@@ -1,0 +1,39 @@
+{% extends "main/base.html" %}
+{% block title %}
+<title>{{ material.name }}</title>
+{% endblock title %}
+
+{% block content %}
+
+{% include "main/menu.html" %}
+
+<div class="content">
+    <div class="card">
+        <h1 class="content_title">
+            {{ material.name }}
+        </h1>
+        <p class="content_text">
+            {{ material.content.0.text }}
+        </p>
+    </div>
+        
+    <div class="card">
+        <h1 class="content_title">
+            Решения
+        </h1>
+        <div class="solutions_list">
+            {% for solution in solutions %}
+            <div class="solutions_list_item">
+                <a href="{% url "main:solution" solution.material.subject.slug solution.material.slug solution.slug %}">
+                    <p class="solutions_list_item_text">
+                        {{ solution }}
+                    </p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+

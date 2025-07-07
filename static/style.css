@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Ubuntu&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f0f0;
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.header {
+    background: #fff;
+    width: 100w;
+    height: 70px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.container {
+    width: 1220px;
+    margin: auto;
+    display: flex;
+    margin-top: 30px;
+
+}
+
+.card {
+    background: #fff;
+    border-radius: 20px;
+    border: 0;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.menu {
+    width: 300px;
+}
+
+.menu_hr {
+    height: 2px;
+    border: 0;
+    background: #f0f0f0;
+    margin: 0 -20px 10px -20px;
+}
+
+.menu_title {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+    margin: 0 5px 13px 5px;
+}
+
+.menu_group:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.menu_group:last-child .menu_title {
+    margin-bottom: 3px;
+}
+
+.menu_group:last-child .menu_list {
+    margin-top: 10px;
+}
+
+.menu_list {
+    position: relative;
+    margin-top: -3px;
+}
+
+.menu_item,
+.solutions_list_item {
+    font-size: 18px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.menu_item_text,
+.solutions_list_item_text {
+    padding: 5px 10px;
+}
+
+.solutions_list {
+    display: flex;
+    flex-direction: column;
+}
+
+.solutions_list_item {
+    margin-right: auto;
+}
+
+.menu_item:last-child {
+    margin-bottom: 0px;
+}
+
+.solutions_list_item:last-child {
+    margin-bottom: 0px;
+}
+
+.menu_item:hover,
+.solutions_list_item:hover,
+.menu_item.active {
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.content {
+    display: block;
+    margin-left: 20px;
+    width: 900px;
+}
+
+.content_title {
+    font-size: 24px;
+    margin: 5px 10px 10px 10px;
+    font-weight: 400;
+    line-height: 31px;
+}
+
+.content_subtitle {
+    font-size: 20px;
+    margin: 0 10px 10px 10px;
+    font-weight: 400;
+}
+
+.content_text {
+    font-size: 18px;
+    margin: 0 10px 10px 10px;
+}
+
+.code_block {
+    margin: 0 10px 10px 10px;
+    padding: 5px 0;
+}
+.code_card {
+    background: #f6f6f6;
+    border-radius: 20px;
+    padding: 10px 15px 17px 15px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+}
+.code_card_title {
+    display: flex;
+    font-size: 14px;
+    color: #888;
+}
+.copy_btn {
+    display: flex;
+    margin-left: auto;
+    cursor: pointer;
+}
+.copy_btn img {
+    margin: 2px 3px;
+}
+
+.code_card_code {
+    margin: 5px;
+    margin-bottom: 0;
+}
+pre, code {
+    font-family: inherit;
+    font-size: inherit;
+}

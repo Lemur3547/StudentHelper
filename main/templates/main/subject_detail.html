@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+{% block title %}
+<title>{{ subject.name }}</title>
+{% endblock title %}
+
+{% block content %}
+
+{% for material in subject.material_set.all %}
+<a href="{% url "main:material" material.subject.slug material.slug %}">
+    {{ material.name }}
+</a>
+{% endfor %}
+
+{% endblock content %}
+

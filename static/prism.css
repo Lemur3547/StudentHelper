@@ -1,0 +1,23 @@
+.token.comment {
+    color: #228B22
+}
+
+.token.number {
+    color: #DC143C
+}
+
+.token.instruction {
+    color: #FF00FF;
+}
+
+.token.register {
+    color: #FFA500;
+}
+
+.token.data_type,
+.token.keyword {
+    color: #1E90FF;
+}
+.token.string {
+    color: #FF0000;
+}

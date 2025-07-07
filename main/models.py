@@ -16,7 +16,7 @@ class Subject(models.Model):
 class Material(models.Model):
     class MaterialType(models.TextChoices):
         LAB = 'laba', 'Лабораторная работа'
-        INDEP = 'independent ', 'Самостоятельная работа'
+        INDEP = 'independent', 'Самостоятельная работа'
         LECTURE = 'lecture', 'Лекция'
 
     name = models.CharField(max_length=100, verbose_name='Материал')
@@ -31,6 +31,7 @@ class Material(models.Model):
     class Meta:
         verbose_name = 'Материал'
         verbose_name_plural = 'Материалы'
+        unique_together = ('subject', 'slug')
 
 class Solution(models.Model):
     slug = models.SlugField(max_length=100)
@@ -47,3 +48,4 @@ class Solution(models.Model):
     class Meta:
         verbose_name = 'Решение'
         verbose_name_plural = 'Решения'
+        unique_together = ('material', 'slug')

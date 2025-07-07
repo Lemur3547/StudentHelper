@@ -1,0 +1,49 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}
+<title>{{ solution }}</title>
+{% endblock title %}
+
+{% block content %}
+
+{% include "main/menu.html" %}
+
+<div class="content">
+    <div class="card">
+        <h1 class="content_title">
+            {{ solution }}
+        </h1>
+        {% for content_block in solution.content %}
+        {% if content_block.type == "title" %}
+        <h2 class="content_subtitle">
+            {{ content_block.text }}
+        </h2>
+        {% elif content_block.type == "text" %}
+        <p class="content_text">
+            {{ content_block.text }}
+        </p>
+        {% elif content_block.type == "code" %}
+        <div class="code_block">
+            <div class="code_card">
+                <div class="code_card_title">
+                    <p>
+                        assembly
+                    </p>
+                    <div class="copy_btn">
+                        <img src="{% static 'copy_icon.svg' %}" alt="Копировать">
+                        <p>
+                            Копировать
+                        </p>
+                    </div>
+                </div>
+                <div class="code_card_code">
+                    <pre><code class="language-masm">{{ content_block.text }}</code></pre>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

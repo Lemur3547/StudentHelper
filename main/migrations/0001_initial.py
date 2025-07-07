@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100, verbose_name='Материал')),
                 ('slug', models.SlugField(max_length=100)),
-                ('type', models.CharField(choices=[('laba', 'Лабораторная работа'), ('independent ', 'Самостоятельная работа'), ('lecture', 'Лекция')], max_length=15, verbose_name='Тип материала')),
+                ('type', models.CharField(choices=[('laba', 'Лабораторная работа'), ('independent', 'Самостоятельная работа'), ('lecture', 'Лекция')], max_length=15, verbose_name='Тип материала')),
                 ('content', models.JSONField(verbose_name='Условие')),
             ],
             options={

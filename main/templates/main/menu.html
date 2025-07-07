@@ -1,0 +1,59 @@
+<div class="menu">
+    <div class="card">
+        <h1 class="menu_title">
+            {{ subject.name }}
+        </h1>
+        <hr class="menu_hr">
+        <div class="menu_group">
+            <p class="menu_title">
+                Лабораторные работы
+            </p>
+            <div class="menu_list">
+                {% for lab in labs %}
+                <div class="menu_item {% if lab.slug == current_page_slug %}active{% endif %}">
+                    <a href="{% url "main:material" lab.subject.slug lab.slug %}">
+                        <p class="menu_item_text">
+                            {{ lab.name }}
+                        </p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr class="menu_hr">
+        <div class="menu_group">
+            <p class="menu_title">
+                Самостоятельные работы
+            </p>
+            <div class="menu_list">
+                {% for independent in independents %}
+                <div class="menu_item {% if independent.slug == current_page_slug %}active{% endif %}">
+                    <a href="{% url "main:material" independent.subject.slug independent.slug %}">
+                        <p class="menu_item_text">
+                            {{ independent.name }}
+                        </p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr class="menu_hr">
+        <div class="menu_group">
+            <p class="menu_title">
+                Лекции
+            </p>
+            <div class="menu_list" hidden>
+                {% for lecture in lectures %}
+                <div class="menu_item {% if lecture.slug == current_page_slug %}active{% endif %}">
+                    <a href="{% url "main:material" lecture.subject.slug lecture.slug %}">
+                        <p class="menu_item_text">
+                            {{ lecture.name }}
+                        </p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+</div>
