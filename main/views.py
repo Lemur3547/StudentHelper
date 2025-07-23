@@ -17,6 +17,24 @@ class SubjectDetailView(DetailView):
     slug_field = 'slug'
     slug_url_kwarg = 'subject'
 
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+
+        labs = Material.objects.filter(subject=self.object, type='laba')
+        for lab in labs:
+            lab.materials_count = lab.solution_set.values('variant').distinct().count()
+            lab.solutions_count = lab.solution_set.count()
+
+        independents = Material.objects.filter(subject=self.object, type='independent')
+        for independent in independents:
+            independent.materials_count = independent.solution_set.values('variant').distinct().count()
+            independent.solutions_count = independent.solution_set.count()
+
+        context["labs"] = labs
+        context["independents"] = independents
+
+        return context
+
 
 class MaterialDetailView(MenuDataMixin, DetailView):
     model = Material
@@ -28,7 +46,7 @@ class MaterialDetailView(MenuDataMixin, DetailView):
         context["solutions"] = Solution.objects.filter(
             material=self.object).order_by("variant")
         return context
-    
+
     def get_object(self):
         subject_slug = self.kwargs['subject']
         material_slug = self.kwargs['material']

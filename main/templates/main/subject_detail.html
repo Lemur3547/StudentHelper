@@ -1,15 +1,97 @@
 {% extends "main/base.html" %}
+{% load static %}
+{% load filters %}
 {% block title %}
 <title>{{ subject.name }}</title>
 {% endblock title %}
 
 {% block content %}
+<div class="content center">
+    <div class="card">
+        <h1 class="content_title">
+            {{ subject.name }}
+        </h1>
+        <p class="content_text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque  consequat lacinia eleifend. Integer est lectus, faucibus eu massa vitae, tincidunt ultrices orci. Curabitur dictum fermentum eros eget  imperdiet. Nam tristique suscipit nulla, nec mollis ligula commodo id.  Donec nec tincidunt lectus. Quisque vestibulum tortor at nulla laoreet,  eget pretium velit iaculis. Vivamus posuere tortor dignissim enim  placerat, non fringilla tellus molestie. Integer gravida lectus at diam  dapibus, sit amet ullamcorper metus vehicula. Morbi risus ex, pretium  quis hendrerit sed, iaculis sit amet tortor. Nullam tempor ante a odio  kehicula iaculis.    
+        </p>
+    </div>
+    <div class="card">
+        <h1 class="content_title">
+            Лабораторные работы
+        </h1>
+        <div class="list">
+            {% for laba in labs %}
+            <div class="list_item wide">
+                <a href="{% url "main:material" laba.subject.slug laba.slug %}">
+                    <p class="list_item_text">
+                        {{ laba }}
+                    </p>
+                    <div class="material_info_bar">
+                        <div class="info">
+                            <img src="{% static "icons/variant.svg" %}" class="info_img">
+                            <p class="info_text">{{ laba.materials_count|correct_word_form:"вариант;варианта;вариантов" }}</p>
+                        </div>
+                        <div class="info">
+                            {% if laba.solutions_count != 0 %}
+                            <img src="{% static "icons/solution.svg" %}" class="info_img">
+                            <p class="info_text">{{ laba.solutions_count|correct_word_form:"решение;решения;решений" }}</p>
+                            {% else %}
+                            <img src="{% static "icons/no_solutions.svg" %}" class="info_img">
+                            <p class="info_text">Нет решений</p>
+                            {% endif %}
+                        </div>
+                        {% comment "for later" %}
+                        <div class="info">
+                            <img src="{% static "verified.svg" %}" class="info_img">
+                            <p class="info_text">27 проверенных</p>
+                        </div>
+                        {% endcomment %}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="card">
+        <h1 class="content_title">
+            Самостоятельные работы
+        </h1>
+        <div class="list">
+            {% for independent in independents %}
+            <div class="list_item wide">
+                <a href="{% url "main:material" independent.subject.slug independent.slug %}">
+                    <p class="list_item_text">
+                        {{ independent }}
+                    </p>
+                    <div class="material_info_bar">
+                        <div class="info">
+                            <img src="{% static "icons/variant.svg" %}" class="info_img">
+                            <p class="info_text">{{ independent.materials_count|correct_word_form:"вариант;варианта;вариантов" }}</p>
+                        </div>
+                        <div class="info">
+                            {% if independent.solutions_count != 0 %}
+                            <img src="{% static "icons/solution.svg" %}" class="info_img">
+                            <p class="info_text">{{ independent.solutions_count|correct_word_form:"решение;решения;решений" }}</p>
+                            {% else %}
+                            <img src="{% static "icons/no_solutions.svg" %}" class="info_img">
+                            <p class="info_text">Нет решений</p>
+                            {% endif %}
+                        </div>
+                        {% comment "for later" %}
+                        <div class="info">
+                            <img src="{% static "verified.svg" %}" class="info_img">
+                            <p class="info_text">27 проверенных</p>
+                        </div>
+                        {% endcomment %}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
-{% for material in subject.material_set.all %}
-<a href="{% url "main:material" material.subject.slug material.slug %}">
-    {{ material.name }}
-</a>
-{% endfor %}
+
 
 {% endblock content %}
 

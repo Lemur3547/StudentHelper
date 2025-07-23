@@ -82,36 +82,40 @@ body {
 }
 
 .menu_item,
-.solutions_list_item {
+.list_item {
     font-size: 18px;
     margin-bottom: 5px;
     transition: all 0.3s ease;
 }
 
 .menu_item_text,
-.solutions_list_item_text {
+.list_item_text {
     padding: 5px 10px;
 }
 
-.solutions_list {
+.list {
     display: flex;
     flex-direction: column;
 }
 
-.solutions_list_item {
+.list_item {
     margin-right: auto;
+}
+
+.list_item.wide {
+    margin-right: 0;
 }
 
 .menu_item:last-child {
     margin-bottom: 0px;
 }
 
-.solutions_list_item:last-child {
+.list_item:last-child {
     margin-bottom: 0px;
 }
 
 .menu_item:hover,
-.solutions_list_item:hover,
+.list_item:hover,
 .menu_item.active {
     background-color: #f6f6f6;
     border-radius: 10px;
@@ -125,8 +129,15 @@ a {
 
 .content {
     display: block;
-    margin-left: 20px;
     width: 900px;
+}
+
+.content.right {
+    margin-left: 20px;
+}
+
+.content.center {
+    margin: auto;
 }
 
 .content_title {
@@ -147,10 +158,19 @@ a {
     margin: 0 10px 10px 10px;
 }
 
+.content_text:last-child {
+    margin-bottom: 7px;
+}
+
 .code_block {
     margin: 0 10px 10px 10px;
     padding: 5px 0;
 }
+
+.code_block:last-child {
+    margin-bottom: 5px;
+}
+
 .code_card {
     background: #f6f6f6;
     border-radius: 20px;
@@ -158,16 +178,19 @@ a {
     font-family: "JetBrains Mono", monospace;
     font-size: 16px;
 }
+
 .code_card_title {
     display: flex;
     font-size: 14px;
     color: #888;
 }
+
 .copy_btn {
     display: flex;
     margin-left: auto;
     cursor: pointer;
 }
+
 .copy_btn img {
     margin: 2px 3px;
 }
@@ -176,7 +199,33 @@ a {
     margin: 5px;
     margin-bottom: 0;
 }
-pre, code {
+
+pre,
+code {
     font-family: inherit;
     font-size: inherit;
+}
+
+.material_info_bar {
+    display: flex;
+    padding: 0 10px 5px 10px;
+}
+
+.info {
+    display: flex;
+}
+.info:not(:last-child) {
+    margin-right: 50px;
+}
+
+.info_img {
+    height: 20px;
+    width: 20px;
+}
+
+.info_text {
+    font-size: 16px;
+    line-height: 20px;
+    color: #888;
+    margin-left: 5px;
 }

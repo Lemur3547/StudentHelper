@@ -1,7 +1,9 @@
 <div class="menu">
     <div class="card">
         <h1 class="menu_title">
-            {{ subject.name }}
+            <a href="{% url "main:subject" subject.slug %}">
+                {{ subject.name }}
+            </a>
         </h1>
         <hr class="menu_hr">
         <div class="menu_group">

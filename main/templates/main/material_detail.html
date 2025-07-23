@@ -7,7 +7,7 @@
 
 {% include "main/menu.html" %}
 
-<div class="content">
+<div class="content right">
     <div class="card">
         <h1 class="content_title">
             {{ material.name }}
@@ -21,15 +21,19 @@
         <h1 class="content_title">
             Решения
         </h1>
-        <div class="solutions_list">
+        <div class="list">
             {% for solution in solutions %}
-            <div class="solutions_list_item">
+            <div class="list_item">
                 <a href="{% url "main:solution" solution.material.subject.slug solution.material.slug solution.slug %}">
-                    <p class="solutions_list_item_text">
+                    <p class="list_item_text">
                         {{ solution }}
                     </p>
                 </a>
             </div>
+            {% empty %}
+            <p class="content_text">
+                Нет решений
+            </p>
             {% endfor %}
         </div>
     </div>
