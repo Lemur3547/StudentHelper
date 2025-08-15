@@ -1,6 +1,21 @@
+import os
 from django.db import models
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 
 # Create your models here.
+
+class AttachedFile(models.Model):
+    file = models.FileField(upload_to='attachments/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    def __str__(self):
+        return self.file.name
+    
 
 class Subject(models.Model):
     name = models.CharField(max_length=100, verbose_name='Предмет')
@@ -24,6 +39,7 @@ class Material(models.Model):
     subject = models.ForeignKey('main.Subject', on_delete=models.CASCADE, verbose_name='Предмет')
     type = models.CharField(max_length=15, choices=MaterialType, verbose_name='Тип материала')
     content = models.JSONField(verbose_name='Условие')
+    order = models.PositiveIntegerField(verbose_name="Порядок")
 
     def __str__(self):
         return self.name

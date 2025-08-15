@@ -49,3 +49,5 @@ ENV/
 # Database files
 *.sqlite3
 *.db
+
+media/

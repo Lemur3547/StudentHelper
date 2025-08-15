@@ -1,9 +1,10 @@
+import os
 from typing import Any
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from main.mixins import MenuDataMixin
-from main.models import Material, Solution, Subject
+from main.models import AttachedFile, Material, Solution, Subject
 
 # Create your views here.
 
@@ -20,7 +21,7 @@ class SubjectDetailView(DetailView):
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
 
-        labs = Material.objects.filter(subject=self.object, type='laba')
+        labs = Material.objects.filter(subject=self.object, type='laba').order_by("order")
         for lab in labs:
             lab.materials_count = lab.solution_set.values('variant').distinct().count()
             lab.solutions_count = lab.solution_set.count()
@@ -43,8 +44,26 @@ class MaterialDetailView(MenuDataMixin, DetailView):
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["solutions"] = Solution.objects.filter(
-            material=self.object).order_by("variant")
+        context["solutions"] = Solution.objects.filter(material=self.object).order_by("variant")
+
+        blocks = []
+        material = self.get_object()
+        for block in material.content:
+            if block.get("type") == "file":
+                try:
+                    file_obj = AttachedFile.objects.get(id=block.get("file_id"))
+                    blocks.append({
+                        "type": "file",
+                        "text": os.path.basename(file_obj.file.name),
+                        "file": file_obj.file
+                    })
+                except AttachedFile.DoesNotExist:
+                    blocks.append(block)
+            else:
+                blocks.append(block)
+
+        context["blocks"] = blocks
+        print(blocks)
         return context
 
     def get_object(self):
